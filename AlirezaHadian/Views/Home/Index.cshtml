@@ -1,0 +1,525 @@
+﻿@model AlirezaHadian.ViewModels.CombinedViewModel
+@using System.IO;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<!--==================== MAIN ====================-->
+<main class="main" id="content">
+    <!--==================== HOME ====================-->
+    <section class="home main_section" id="home">
+        <div class="main_home_container main_container grid">
+            <div class="home_content grid">
+                <div class="home_social">
+
+                    @foreach (var item in Model.HomeSocials)
+                    {
+                        <a href="@item.SocialLink" target="_blank" class="home_social-icon">
+                            <i class="@item.SocialIcon"></i>
+                        </a>
+                    }
+                </div>
+                <div class="home_img">
+                    <svg class="home_blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <mask id="mask0" mask-type="alpha">
+                            <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547
+                                    130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775
+                                    97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666
+                                    0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
+                        </mask>
+                        <g mask="url(#mask0)">
+                            <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346
+                                    165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403
+                                    129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028
+                                    -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
+
+                            <image class="home_blob-img" y='4' x='0' xlink:href="/img/@Model.Home.First().Image" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="home_data">
+                    @foreach (var item in Model.Home)
+                    {
+                        <h1 class="home_title">@item.Title</h1>
+                        <h3 class="home_subtitle">@item.Subtitle</h3>
+                        <p class="home_description">@item.Description</p>
+                        <a href="#contact" class="main_button main_button-flex">
+                            <i class="uil uil-message button_icon"></i> تماس با من
+                        </a>
+                    }
+
+                </div>
+            </div>
+
+            <div class="home_scroll">
+                <a href="#about" class="home_scroll-button main_button-flex">
+                    <i class="uil uil-arrow-down home_scroll-arrow"></i>
+                    <span class="home_scroll-name">برو پایین</span>
+                    <i class="uil uil-mouse-alt home_scroll-mouse"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!--==================== ABOUT ====================-->
+    <section class="about main_section" id="about">
+        <h2 class="section_title">درباره من</h2>
+        <span class="section_subtitle">من کی اَم؟</span>
+
+        <div class="main_about_container main_container grid">
+            <img src="/img/@Model.Abouts.First().Image" alt="About picture" class="about_img">
+
+            <div class="about_data">
+                <p class="about_description">
+                    @Model.Abouts.First().Text
+                </p>
+                <div class="about_info" dir="rtl">
+                    @foreach (var item in Model.AboutInfos)
+                    {
+                        string title = item.Title;
+                        string[] words = title.Split(' ');
+                        string continueSentence = "";
+                        <div>
+                            <span class="about_info-title">@item.Count+</span>
+                            @if (words.Length >= 2)
+                            {
+                                for (int i = 1; i < words.Length; i++)
+                                {
+                                    continueSentence += words[i] + " ";
+                                }
+                                string modifiedSentence = $"{words[0]}<br>{continueSentence}";
+                                <span class="about_info-name">@Html.Raw(modifiedSentence)</span>
+                            }
+
+                        </div>
+                    }
+                </div>
+                <div class="about_buttons">
+                    <a download="" href="~/pdf/@Model.Abouts.First().CVFile"
+                       class="main_button main_button-flex">
+                        <i class="uil uil-download-alt button_icon"></i> دانلود رزومه
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!--==================== SEND AS AN ANONYMOUS ====================-->
+    <section class="anonymous main_section">
+        <div class="anonymous_bg">
+            <div class="main_anonymous_container main_container">
+                <div class="anonymous_data">
+                    <h2 class="anonymous_title">ناشناس بهم حرفتو بزن</h2>
+                    <p class="anonymous_description">هر حرفی تو دلت هست رو میتونی به صورت ناشناس به من بزنی!</p>
+                    <a href="https://telegram.me/BiChatBot?start=sc-870488-bU4veFH" target="_blank"
+                       class="main_button main_button-flex main_button-white">
+                        <i class="uil uil-message anonymous_icon button_icon"></i>
+                        ناشناس من
+                    </a>
+                </div>
+                <img src="/img/Anonymous message.png" alt="" class="anonymous_img">
+            </div>
+        </div>
+    </section>
+
+    <!--==================== SKILLS ====================-->
+    <section class="skills main_section" id="skills">
+        <h2 class="section_title">مهارت ها</h2>
+        <span class="section_subtitle">سطح مهارت های من</span>
+
+        <div class="main_skills_container main_container grid">
+            <!--==================Skill 1=====================-->
+            @foreach (var item in Model.SkillsCategories)
+            {
+                <div>
+                    <div class="skills_content skills_close">
+                        <div class="skills_header">
+                            <i class="@item.SkillCategoryIcon skills_icon"></i>
+                            <div>
+                                <h1 class="skills_title">@item.SkillCategoryTitle</h1>
+                                <span class="skills_subtitle">@item.SkillCategorySubTitle</span>
+                            </div>
+                            <i class="uil uil-angle-down skills_arrow"></i>
+                        </div>
+                        @if (item.Skills != null)
+                        {
+                            <div class="skills_list grid" dir="ltr">
+                                @foreach (var subitem in item.Skills)
+                                {
+                                    string className = "sk" + subitem.Percentage;
+                                    <div class="skills_data">
+                                        <div class="skills_titles">
+                                            <h3 class="skills_name">@subitem.Title</h3>
+                                            <span class="skills_number">@subitem.Percentage%</span>
+                                        </div>
+                                        <div class="skills_bar">
+                                            <span class="skills_percentage @className"></span>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+    <!--==================== QUALIFICATION ====================-->
+    <section class="qualification main_section">
+        <h2 class="section_title">جدول زمانی</h2>
+        <span class="section_subtitle">سفر کاری من</span>
+
+        <div class="main_qualification_container main_container">
+            <div class="qualification_tab">
+                <i class="uil uil-graduation-cap qualification_icon"></i> تحصیلات
+            </div>
+            <div class="qualification_sections" dir="auto">
+                <!--=======================QUALIFICATION 1===================-->
+                @{
+                    int index = 1;
+                    foreach (var item in Model.JourneyTimelines)
+                    {
+                        if (index % 2 != 0)
+                        {
+                                    <div class="qualification_data">
+                                        <div>
+                                            <h3 class="qualification_title">@item.Title</h3>
+                                            <span class="qualification_subtitle">@item.SubTitle</span>
+                                            <div class="qualification_calender">
+                                                <i class="uil uil-calender-alt"></i>
+                                                @item.FromToEndDate
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <span class="qualification_rounder"></span>
+                                            <span class="qualification_line"></span>
+                                        </div>
+                                    </div>
+                            index++;
+                        }
+                        else
+                        {
+                                    <div class="qualification_data">
+                                        <div></div>
+                                        <div>
+                                            <span class="qualification_rounder"></span>
+                                            <span class="qualification_line"></span>
+                                        </div>
+                                        <div>
+                                            <h3 class="qualification_title">@item.Title</h3>
+                                            <span class="qualification_subtitle">@item.SubTitle</span>
+                                            <div class="qualification_calender">
+                                                <i class="uil uil-calender-alt"></i>
+                                                @item.FromToEndDate
+                                            </div>
+                                        </div>
+                                    </div>
+                            index++;
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </section>
+
+    <!--==================== SERVICES ====================-->
+    <section class="services main_section" id="services">
+        <h2 class="section_title">خدمات</h2>
+        <span class="section_subtitle">من چیکار میکنم؟</span>
+
+        <div class="main_services_container main_container grid">
+            <!--==================== SERVICES 1 ====================-->
+            @foreach (var item in Model.ServicesCategories)
+            {
+                <div class="services_content">
+                    <div>
+                        <i class="@item.ServicesCategoryIcon services_icon"></i>
+                        <h3 class="services_title">@Html.Raw(item.ServicesCategoryTitle)</h3>
+                    </div>
+
+                    <span class="main_button main_button-flex main_button-small main_button-link services_button">
+                        بیشتر
+                        <i class="uil uil-arrow-left button_icon"></i>
+                    </span>
+
+
+                    <div class="services_modal" dir="auto">
+                        <div class="services_modal-content">
+                            <h4 class="services_modal-title">@Html.Raw(item.ServicesCategoryTitle)</h4>
+                            <i class="uil uil-times services_modal-close"></i>
+
+                            <ul class="services_modal-services grid">
+                                @if (item.Services != null)
+                                {
+                                    foreach (var subitem in item.Services)
+                                    {
+                                        <li class="services_modal-service">
+                                            <i class="uil uil-check-circle services_model-icon"></i>
+                                            <p>@subitem.Text</p>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </section>
+    <!--==================== PORTFOLIO ====================-->
+    <section class="portfolio main_section" dir="rtl" id="portfolio">
+        <h2 class="section_title">نمونه کارها</h2>
+        <span class="section_subtitle">پروژه های اخیر</span>
+
+        <div class="main_portfolio_container main_container swiper">
+            <div class="swiper-wrapper">
+                <!--==================== PORTFOLIO 1====================-->
+                @{
+                    foreach (var item in Model.Portfolios)
+                    {
+                                <div class="main_portfolio_content grid swiper-slide">
+                                    <img src="/img/@item.Image" alt="" class="portfolio_img">
+                                    <div class="portfolio_data">
+                                        <h3 class="portfolio_title">@item.Title</h3>
+                                        <p class="portfolio_description">@item.SubTitle</p>
+                                        <a onclick="currentSlide(1)" data-modal-id="@item.PortfolioID"
+                                       class="hover-shadow cursor main_button main_button-flex main_button-small portfolio_button portfolio_modal_button">
+                                            <i class="uil uil-arrow-right button_icon"></i>
+                                            دمو
+                                        </a>
+
+                                        <a href="@item.Link"
+                                       class="hover-shadow cursor main_button main_button-flex main_button-small portfolio_button" target="_blank">
+                                            <i class="uil uil-link button_icon"></i>
+                                            لینک
+                                        </a>
+                                    </div>
+
+                                </div>
+                    }
+                }
+            </div>
+
+            <!-- Add Arrows -->
+            @if (Model.Portfolios.Count() > 1)
+            {
+                <div class="swiper-button-prev">
+                    <i class="uil uil-angle-right-b swiper-portfolio-icon"></i>
+                </div>
+                <div class="swiper-button-next">
+                    <i class="uil uil-angle-left-b swiper-portfolio-icon"></i>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            }
+        </div>
+
+    </section>
+    <!--==================== CERTIFICATES ====================-->
+    <section class="certificates main_section">
+        <h2 class="section_title">مدارک</h2>
+        <span class="section_subtitle">دوره های تمام شده</span>
+
+        <div class="main_cerificates_container main_container grid">
+            <div class="row">
+                @foreach (var item in Model.Certificates)
+                {
+                    <div class="col-md-4 col-sm-4 col-6 pb-3">
+                        <div class="certificate_gallery">
+                            <img src="/img/@item.Image">
+                            <div class="desc">@item.Title</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="popup_image">
+            <span class="uil uil-times"></span>
+            <img src="" alt="">
+        </div>
+    </section>
+    <!--==================== PROJECT IN MIND ====================-->
+    <section class="project main_section">
+        <div class="project_bg">
+            <div class="main_project_container main_container">
+                <div class="project_data">
+                    <h2 class="project_title">پروژه ی جدید دارید؟</h2>
+                    <p class="project_description">با من در ارتباط باشید و پروژه خود را به من بسپارید!</p>
+                    <a href="#contact" class="main_button main_button-flex main_button-white mb-3">
+                        <i class="uil uil-message project_icon button_icon"></i>
+                        تماس با من
+                    </a>
+                </div>
+                <img src="/img/project.png" alt="" class="project_img">
+
+            </div>
+        </div>
+    </section>
+
+    <!--==================== BUY ME A COFFEE====================-->
+    <section class="coffee main_section">
+        <div class="buy_coffee">
+            <a href="https://coffeebede.com/alirezahadian" target="_blank">
+                <i class="uil uil-coffee"></i>
+                <span class="coffee_title">منو یه قهوه مهمون کن </span>
+            </a>
+        </div>
+    </section>
+    <!--==================== CONTACT ME ====================-->
+    <section class="contact main_section" id="contact">
+        <h2 class="section_title">تماس با من</h2>
+        <span class="section_subtitle">در تماس باشید</span>
+
+        <div class="main_contact_container main_container grid" dir="ltr">
+            <div>
+                <div class="contact_information">
+                    <i class="uil uil-phone contact_icon"></i>
+                    <div>
+                        <h3 class="contact_title">شماره موبایل</h3>
+                        <span class="contact_subtitle">@Model.ContactUs.First().PhoneNumber</span>
+                    </div>
+                </div>
+                <div class="contact_information">
+                    <i class="uil uil-envelope contact_icon"></i>
+
+                    <div>
+                        <h3 class="contact_title">ایمیل</h3>
+                        <span class="contact_subtitle">@Model.ContactUs.First().Email</span>
+                    </div>
+                </div>
+                <div class="contact_information">
+                    <i class="uil uil-map-marker contact_icon"></i>
+
+                    <div>
+                        <h3 class="contact_title">مکان</h3>
+                        <span class="contact_subtitle">@Model.ContactUs.First().Place</span>
+                    </div>
+                </div>
+            </div>
+            <div id="contactUsForm">
+                @{
+                    await Html.RenderPartialAsync("_ContactUs", Model.message);
+                }
+            </div>
+            <div id="reeesssult"></div>
+            @*<form asp-controller="Home" asp-action="ContactUs" method="post" id="contactForm" class="contact_form grid" dir="rtl">
+            <div class="contact_inputs grid">
+            <div class="contact_content">
+            <label asp-for="message.Name" class="contact_label" re>نام</label>
+            <input asp-for="message.Name" type="text" class="contact_input">
+            <span asp-validation-for="message.Name" class="text-danger"></span>
+            </div>
+            <div class="contact_content">
+            <label asp-for="message.EmailOrPhone" class="contact_label">شماره موبایل / ایمیل</label>
+            <input asp-for="message.EmailOrPhone" type="text" class="contact_input">
+            <span asp-validation-for="message.EmailOrPhone" class="text-danger"></span>
+            </div>
+            </div>
+            <div class="contact_content">
+            <label asp-for="message.Prject" class="contact_label">پروژه</label>
+            <input asp-for="message.Prject" type="text" class="contact_input">
+            <span asp-validation-for="message.Prject" class="text-danger"></span>
+            </div>
+            <div class="contact_content">
+            <label asp-for="message.MessageText" class="contact_label">متن پیام</label>
+            <textarea asp-for="message.MessageText" id="" cols="0" rows="7" class="contact_input"></textarea>
+            <span asp-validation-for="message.MessageText" class="text-danger"></span>
+            </div>
+
+            <div>
+            <button id="submitBtn" type="submit" class="main_button main_button-flex">
+            <i class="uil uil-message button_icon"></i>
+            ارسال
+            </button>
+            </div>
+            </form>*@
+        </div>
+    </section>
+</main>
+
+
+<!--==================== FOOTER ====================-->
+<footer class="footer">
+    <div class="footer_bg">
+        <div class="main_footer_container main_container grid">
+            <div>
+                <h1 class="footer_title">علیرضا هادیان</h1>
+                <span class="footer_subtitle">Alireza Hadian</span>
+            </div>
+
+            <ul class="footer_links">
+                <li>
+                    <a href="#services" class="footer_link">خدمات</a>
+                </li>
+                <li>
+                    <a href="#portfolio" class="footer_link">نمونه کارها</a>
+                </li>
+                <li>
+                    <a href="#contact" class="footer_link">تماس بامن</a>
+                </li>
+            </ul>
+            <div class="footer_socials">
+                @foreach (var item in Model.FooterSocials)
+                {
+                    <a href="@item.FooterLink" target="_blank" class="footer_social">
+                        <i class="@item.FooterIcon"></i>
+                    </a>
+                }
+            </div>
+        </div>
+
+        <p class="footer_copy" dir="ltr">&#169; Alireza Hadian. All right reserved</p>
+    </div>
+</footer>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            $("#submitBtn").click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "/Home/ContactUs", // آدرس اکشن کنترلر برای پردازش اطلاعات
+                    type: "POST", // نوع درخواست
+                    data: $("#contactForm").serialize(),
+                    success: function (result) {
+                        if(result.success){
+                        swal.fire({
+                            icon: 'success',
+                            title: "پروژه شما با موفقیت ثبت شد!",
+                            text: 'منتظر تماس ما باشید.',
+                            type: 'success',
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        }else{
+                            swal.fire({
+                            icon: 'error',
+                            title: "خطا...",
+                            text: 'لطفا تمامی اطلاعات مورد نیاز را وارد کنید!',
+                            type: 'error',
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'خطا!',
+                                text: 'مشکلی در روند ثبت پروژه بوجود آمده است.',
+                            });
+                    }
+                });
+            });
+        });
+    </script>
+    }

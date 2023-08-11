@@ -1,0 +1,41 @@
+﻿@model AlirezaHadian.ViewModels.MessageViewModel
+
+
+<form id="contactForm" class="contact_form grid" dir="rtl">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="contact_inputs grid">
+
+        <div class="contact_content">
+            <label asp-for="Name" class="contact_label"></label>
+            <input asp-for="Name" class="contact_input" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="contact_content">
+            <label asp-for="EmailOrPhone" class="contact_label"></label>
+            <input asp-for="EmailOrPhone" class="contact_input" />
+            <span asp-validation-for="EmailOrPhone" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="contact_content">
+        <label asp-for="Prject" class="contact_label"></label>
+        <input asp-for="Prject" class="contact_input" />
+        <span asp-validation-for="Prject" class="text-danger"></span>
+    </div>
+    <div class="contact_content">
+        <label asp-for="MessageText" class="contact_label"></label>
+        <textarea asp-for="MessageText" rows="7" class="contact_input"></textarea> 
+        <span asp-validation-for="MessageText" class="text-danger"></span>
+    </div>
+    <div>
+        <button type="submit" id="submitBtn" class="main_button main_button-flex">
+            <i class="uil uil-message button_icon"></i>
+            ارسال
+        </button>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--==================== UNICONS ====================-->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+
+    <!--==================== BOOTSTRAP ====================-->
+    <link rel="stylesheet" href="/css/bootstrap.rtl.min.css">
+
+    <!--==================== SWIPER CSS ====================-->
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css">
+
+    <!--==================== CSS ====================-->
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css" rel="stylesheet" />
+
+    <script src="/js/jquery-3.7.0.min.js"></script>
+
+    <title>علیرضا هادیان</title>
+</head>
+
+<body>
+    <!--==================== HEADER ====================-->
+    <header class="main_header" id="main_header">
+        <nav class="main_nav main_container">
+            <a href="#" class="main_nav_logo">
+                علیرضا
+            </a>
+            <div class="main_nav_menu" id="main_nav-menu">
+                <ul class="main_nav_list grid">
+                    <li class="main_nav_item">
+                        <a href="#home" class="main_nav_link active-link">
+                            <i class="uil uil-estate main_nav_icon"></i> خانه
+                        </a>
+                    </li>
+                    <li class="main_nav_item">
+                        <a href="#about" class="main_nav_link">
+                            <i class="uil uil-user main_nav_icon"></i> درباره من
+                        </a>
+                    </li>
+                    <li class="main_nav_item">
+                        <a href="#skills" class="main_nav_link">
+                            <i class="uil uil-file-alt main_nav_icon"></i> مهارت ها
+                        </a>
+                    </li>
+                    <li class="main_nav_item">
+                        <a href="#services" class="main_nav_link">
+                            <i class="uil uil-briefcase-alt main_nav_icon"></i> خدمات
+                        </a>
+                    </li>
+                    <li class="main_nav_item">
+                        <a href="#portfolio" class="main_nav_link">
+                            <i class="uil uil-scenery main_nav_icon"></i> نمونه کارها
+                        </a>
+                    </li>
+                    <li class="main_nav_item">
+                        <a href="#contact" class="main_nav_link">
+                            <i class="uil uil-message main_nav_icon"></i> تماس بامن
+                        </a>
+                    </li>
+                </ul>
+                <i class="uil uil-times main_nav_close" id="main_nav-close"></i>
+            </div>
+            <div class="main_nav_btns">
+                <!-- Theme change button -->
+                <div id="clickable-icon">
+                    <i class="uil uil-paint-tool change-theme" id="color-theme-button"></i>
+                </div>
+                <i class="uil uil-moon change-theme" id="theme-button"></i>
+                <div class="main_nav_toggle" id="main_nav-toggle">
+                    <i class="uil uil-apps"></i>
+                </div>
+
+                <div id="popover" class="popover-content">
+                    <h5 class="popover-title">تغییر رنگ تم</h5>
+                    <input type="range" min="0" max="300" value="180" dir="ltr" class="slider" id="hue-slider"
+                           oninput="changeTheme()">
+                </div>
+            </div>
+            @*</div>*@
+        </nav>
+    </header>
+
+@RenderBody()
+   
+    <!--==================== SCROLL TOP ====================-->
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class="uil uil-arrow-up scrollup-icon"></i>
+    </a>
+
+    <!--==================== SWIPER JS ====================-->
+    <script src="/js/swiper-bundle.min.js"></script>
+
+    <!--==================== BOOTSTRAP JS ====================-->
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!--==================== MAIN JS ====================-->
+    <script src="/js/main.js"></script>
+    <script src="/js/jquery.validate.min.js"></script>
+    <script src="/js/jquery.validate.unobtrusive.min.js"></script>
+    <!--=================== SWEET ALERT ==================-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
