@@ -14,7 +14,6 @@ namespace AlirezaHadian.ViewModels
         public IEnumerable<HomeSocial> HomeSocials { get; set; }
         public IEnumerable<JourneyTimeline> JourneyTimelines { get; set; }
         public IEnumerable<Portfolio> Portfolios { get; set; }
-        public IEnumerable<PortfolioImageGallery> ImageGalleries { get; set; }
         public IEnumerable<Service> Services { get; set; }
         public IEnumerable<ServicesCategory> ServicesCategories { get; set; }
         public IEnumerable<Skill> Skills { get; set; }

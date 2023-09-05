@@ -1,0 +1,30 @@
+﻿@model AlirezaHadian.Models.About
+
+@{
+    ViewData["Title"] = "ویرایش درباره من";
+}
+@*href="/Admin/Home/HomeInfoUpdate"*@
+<form asp-action="AboutUpdate" method="post" enctype="multipart/form-data" class="pt-3">
+    <input type="hidden" asp-for="AboutID" />
+    <input type="hidden" asp-for="Image" />
+    <input type="hidden" asp-for="CVFile" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Text" class="control-label"></label>
+        <textarea asp-for="Text" class="form-control"></textarea>
+        <span asp-validation-for="Text" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="CVFile"></label>
+        <input name="files" type="file" id="uploadBox" class="form-control" />
+    </div>
+    <div>
+        <label asp-for="Image"></label>
+        <input name="files" type="file" id="uploadBox" class="form-control" />
+    </div>
+
+    <div class="form-group pt-2">
+        <input type="submit" value="ویرایش" class="btn btn-primary" />
+    </div>
+</form>

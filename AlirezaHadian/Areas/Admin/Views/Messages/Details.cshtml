@@ -1,0 +1,30 @@
+﻿@model AlirezaHadian.Models.Message
+
+@{
+    ViewData["Title"] = "پیام";
+}
+
+<div class="offset-md-3">
+    <div class="card">
+        <div class="card-header">
+            @Model.Prject
+        </div>
+        <div class="card-body">
+            <h5 class="card-title ">@Model.Name</h5>
+            <br />
+            <h3 class="card-text">متن:</h3
+            <h3 class="card-text">@Model.MessageText</h3>
+            <hr />
+            <p class="card-text">@Model.EmailOrPhone</p>
+            <p class="card-text">@Model.MessageTime.ToShamsiWithHour()</p>
+        </div>
+        <div class="card-footer text-muted text-center">
+            <a asp-action="Delete" asp-route-id="@Model.MessageID" class="btn btn-primary btn-lg">
+                <i class="uil uil-trash-alt"></i>
+            </a>
+            <a asp-action="Index" class="btn btn-primary btn-lg">
+                <i class="uil uil-arrow-circle-left"></i>
+            </a>
+        </div>
+    </div>
+</div>

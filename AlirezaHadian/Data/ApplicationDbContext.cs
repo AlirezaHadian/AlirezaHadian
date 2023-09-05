@@ -1,10 +1,11 @@
 ﻿using AlirezaHadian.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace AlirezaHadian.Data
 {
-    public class ApplicationDbContext:DbContext
+    public class ApplicationDbContext:IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -19,10 +20,11 @@ namespace AlirezaHadian.Data
         public DbSet<HomeSocial> HomeSocials{ get; set; }
         public DbSet<JourneyTimeline> JourneyTimelines{ get; set; }
         public DbSet<Portfolio> Portfolios { get; set; }
-        public DbSet<PortfolioImageGallery> ImageGalleries{ get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<ServicesCategory> ServicesCategories{ get; set; }
         public DbSet<Skill> Skills{ get; set; }
         public DbSet<SkillsCategory> SkillsCategories { get; set; }
+        public DbSet<UserData> UserDatas { get; set; }
+        public DbSet<TelegramBotInfo> TelegramBotInfos { get; set; }
     }
 }

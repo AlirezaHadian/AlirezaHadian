@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AlirezaHadian.Models
 {
-    [Keyless]
     public class ContactUs
     {
+        public int ContactUsID { get; set; }
         [Display(Name = "شماره تلفن")]
         [Required(ErrorMessage = "{0} اجباری می باشد")]
         [MaxLength(20, ErrorMessage = "{0}  نمی تواند بیش از {1} کاراکتر باشد")]

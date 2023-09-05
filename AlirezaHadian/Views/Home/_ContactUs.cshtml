@@ -23,9 +23,10 @@
     </div>
     <div class="contact_content">
         <label asp-for="MessageText" class="contact_label"></label>
-        <textarea asp-for="MessageText" rows="7" class="contact_input"></textarea> 
+        <textarea asp-for="MessageText" rows="7" class="contact_input"></textarea>
         <span asp-validation-for="MessageText" class="text-danger"></span>
     </div>
+    @Html.HiddenFor(model => model.GoogleCaptchaToken)
     <div>
         <button type="submit" id="submitBtn" class="main_button main_button-flex">
             <i class="uil uil-message button_icon"></i>
@@ -35,6 +36,18 @@
 </form>
 
 @section Scripts {
+    <script src="https://www.google.com/recaptcha/api.js?render=6LflpNEnAAAAAEUywlsFiZI2VYDHklPnBMY41Gb-"></script>
+    <script>
+        function verifyRecaptcha() {
+            grecaptcha.ready(function () {
+                window.grecaptcha.execute('6LflpNEnAAAAAEUywlsFiZI2VYDHklPnBMY41Gb-', { action: 'Index' })
+                    .then(function (token) {
+                        $("#GoogleCaptchaToken").val(token);
+                    });
+            });
+        }
+    </script>
+
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }

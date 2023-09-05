@@ -3,9 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AlirezaHadian.Models
 {
-    [Keyless]
     public class Home
     {
+        [Key]
+        public int Id { get; set; }
         [Display(Name = "عنوان")]
         [Required(ErrorMessage = "{0} اجباری می باشد")]
         [MaxLength(50, ErrorMessage = "{0}  نمی تواند بیش از {1} کاراکتر باشد")]

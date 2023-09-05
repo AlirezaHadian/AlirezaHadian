@@ -1,0 +1,28 @@
+﻿@model AlirezaHadian.Models.SkillsCategory
+
+@{
+    ViewData["Title"] = "ویرایش مهارت";
+}
+
+        <form asp-action="EditCategory" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SkillCategoryID" />
+            <div class="form-group">
+                <label asp-for="SkillCategoryTitle" class="control-label"></label>
+                <input asp-for="SkillCategoryTitle" class="form-control" />
+                <span asp-validation-for="SkillCategoryTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SkillCategorySubTitle" class="control-label"></label>
+                <input asp-for="SkillCategorySubTitle" class="form-control" />
+                <span asp-validation-for="SkillCategorySubTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SkillCategoryIcon" class="control-label"></label>
+                <input asp-for="SkillCategoryIcon" class="form-control" />
+                <span asp-validation-for="SkillCategoryIcon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ویرایش" class="btn btn-primary" />
+            </div>
+        </form>

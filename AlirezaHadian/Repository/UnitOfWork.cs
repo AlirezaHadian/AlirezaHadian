@@ -16,14 +16,13 @@ namespace AlirezaHadian
             _db = db;
         }
 
-        private GenericRepository<About> aboutRepostory;
+        private GenericRepository<About> aboutRepository;
         private GenericRepository<AboutInfo> aboutInfoRepository;
         private GenericRepository<Certificate> certificateRepository;
         private GenericRepository<ContactUs> contactUsRepository;
         private GenericRepository<FooterSocial> footerSocialRepository;
         private GenericRepository<Home> homeRepository;
         private GenericRepository<HomeSocial> homeSocialsRepository;
-        private GenericRepository<PortfolioImageGallery> imageGalleryRepository;
         private GenericRepository<JourneyTimeline> journyRepository;
         private GenericRepository<Message> messageRepository;
         private GenericRepository<Portfolio> portfolioRepository;
@@ -31,19 +30,19 @@ namespace AlirezaHadian
         private GenericRepository<ServicesCategory> servicesCategoryRepository;
         private GenericRepository<Skill> skillRepository;
         private GenericRepository<SkillsCategory> skillsCategoryRepository;
+        private GenericRepository<UserData> userDataRepository;
+        private GenericRepository<TelegramBotInfo> telegramBotInfoRepository;
 
-
-
-        public GenericRepository<About> AboutRepostory
+        public GenericRepository<About> AboutRepository
         {
             get
             {
-                if (aboutRepostory == null)
+                if (aboutRepository == null)
                 {
-                    aboutRepostory = new GenericRepository<About>(_db);
+                    aboutRepository = new GenericRepository<About>(_db);
                 }
 
-                return aboutRepostory;
+                return aboutRepository;
             }
         }
         public GenericRepository<AboutInfo> AboutInfoRepository
@@ -116,18 +115,6 @@ namespace AlirezaHadian
                 }
 
                 return homeSocialsRepository;
-            }
-        }
-        public GenericRepository<PortfolioImageGallery> PortfolioImageGalleryRepository
-        {
-            get
-            {
-                if (imageGalleryRepository == null)
-                {
-                    imageGalleryRepository = new GenericRepository<PortfolioImageGallery>(_db);
-                }
-
-                return imageGalleryRepository;
             }
         }
         public GenericRepository<JourneyTimeline> JourneyTimelineRepository
@@ -212,6 +199,30 @@ namespace AlirezaHadian
                 }
 
                 return skillsCategoryRepository;
+            }
+        }
+        public GenericRepository<UserData> UserDataRepository
+        {
+            get
+            {
+                if (userDataRepository == null)
+                {
+                    userDataRepository = new GenericRepository<UserData>(_db);
+                }
+
+                return userDataRepository;
+            }
+        }
+        public GenericRepository<TelegramBotInfo> TelegramBotInfoRepository
+        {
+            get
+            {
+                if (telegramBotInfoRepository == null)
+                {
+                    telegramBotInfoRepository = new GenericRepository<TelegramBotInfo>(_db);
+                }
+
+                return telegramBotInfoRepository;
             }
         }
         public void Save()

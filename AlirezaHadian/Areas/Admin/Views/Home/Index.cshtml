@@ -1,0 +1,177 @@
+﻿@model AlirezaHadian.ViewModels.AdminIndexViewModel
+@{
+    ViewData["Title"] = "صفحه اصلی";
+}
+
+<div>
+    <p>تعداد بازدید امروز: @Model.TodayVisit</p>
+</div>
+<h3>اطلاعات کاربران وارد شده</h3>
+<hr />
+<a href="/Admin/Home/DeleteAllUserLog" class="delete-link btn btn-danger">
+    حذف تمام لاگ ها
+    <i class="uil uil-plus-circle"></i>
+</a>
+<table class="table" id="usersVisitTable">
+    <thead>
+        <tr>
+            <th>
+                آیپی
+            </th>
+            <th>
+                سیستم عامل
+            </th>
+            <th>
+                مشخصات دستگاه
+            </th>
+            <th>
+                عامل کاربر
+            </th>
+            <th>
+                زبان مرورگر
+            </th>
+            <th>
+                سایت ارجاع دهنده
+            </th>
+            <th>
+                تاریخ
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.userData)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IPAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OperatingSystem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeviceSpecifications)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserAgent)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BrowserLanguage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Referrer)
+                </td>
+                <td>
+                    @{
+                        string date = item.RequestTime.ToShamsiWithHour();
+                    }
+                    @date
+                </td>
+                <td>
+                    <a href="/Admin/Home/DeleteUserLog/@item.UserDataID" class="delete-link btn btn-danger btn-md">
+                        <i class="uil uil-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Users telegram bot click log</h3>
+<hr />
+<a href="/Admin/Home/DeleteAllTelegramLog" class="delete-link btn btn-danger">
+    حذف تمام لاگ ها
+<i class="uil uil-plus-circle"></i>
+</a>
+<table class="table" id="telegramUsersTable">
+    <thead>
+        <tr>
+            <th>
+                IPAddress
+            </th>
+            <th>
+                OperatingSystem
+            </th>
+            <th>
+                DeviceSpecifications
+            </th>
+            <th>
+                RequestTime
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.botInfo)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IPAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OperatingSystem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeviceSpecifications)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestTime)
+                </td>
+                <td>
+                    <a href="/Admin/Home/DeleteTelegramLog/@item.UserDataID" class="delete-link btn btn-danger btn-md">
+                        <i class="uil uil-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+            <script>
+            $(document).ready(function () {
+                $('#usersVisitTable').DataTable();
+                $('#telegramUsersTable').DataTable();
+            });
+        //let table = new DataTable('#usersVisitTable', {
+        //    responsive: true
+        //});
+        //let telegramTable = new DataTable('#telegramUsersTable', {
+        //    responsive: true
+        //});
+
+        const deleteLinks = document.querySelectorAll('.delete-link');
+        deleteLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const href = this.getAttribute('href');
+
+                Swal.fire({
+                    title: 'آیا از حذف مطمئن هستید؟',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: 'لغو',
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'بله'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = href;
+                        swal.fire({
+                            icon: 'success',
+                            title: "با موفقیت حذف شد!",
+                            type: 'success',
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    }

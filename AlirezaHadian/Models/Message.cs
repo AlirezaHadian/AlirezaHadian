@@ -23,5 +23,9 @@ namespace AlirezaHadian.Models
         [Display(Name = "تاریخ پیام")]
         [Required(ErrorMessage = "{0} اجباری می باشد")]
         public DateTime MessageTime { get; set; } = DateTime.Now;
+        [Display(Name = "دیده شده")]
+        public bool Seen { get; set; }
+        [Display(Name = "انجام داده شده")]
+        public bool Done { get; set; }
     }
 }

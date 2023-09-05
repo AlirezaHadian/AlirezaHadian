@@ -1,0 +1,79 @@
+﻿@model IEnumerable<AlirezaHadian.Models.Certificate>
+
+@{
+    ViewData["Title"] = "مدارک";
+}
+<a asp-action="Create" class="btn btn-success">
+    افزودن مدرک
+    <i class="uil uil-plus-circle"></i>
+</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    <img src="/img/@item.Image" alt="@item.Title" style="max-width:120px;">
+
+                </td>
+                <td class="pull-left">
+                    <a asp-action="Edit" asp-route-id="@item.CertificateID" class="btn btn-primary btn-md">
+                        <i class="uil uil-edit"></i>
+                    </a>
+                    <a href="/Admin/Certificates/Delete/@item.CertificateID" class="delete-link btn btn-danger btn-md">
+                        <i class="uil uil-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    // Attach a click event to the delete links/buttons
+    const deleteLinks = document.querySelectorAll('.delete-link');
+    deleteLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const href = this.getAttribute('href');
+
+            Swal.fire({
+                title: 'آیا از حذف مطمئن هستید؟',
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'لغو',
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'بله'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = href;
+                    swal.fire({
+                        icon: 'success',
+                        title: "با موفقیت حذف شد!",
+                        type: 'success',
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            });
+        });
+    });
+</script>

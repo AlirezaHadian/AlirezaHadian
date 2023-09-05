@@ -240,105 +240,24 @@ document.addEventListener('click', (event) => {
     colorContainer.style.animation = "fadeOut 0.3s ease-in-out";
   }
 });
-
-
 // Update the slider value display
 const slider = document.getElementById("hue-slider");
 
 slider.oninput = function() {
-  changeTheme(); // Call the changeTheme function when the slider is moved
+  changeTheme();
 };
 
 
 window.onload = function() {
   if (typeof(Storage) !== "undefined") {
     if (localStorage.getItem('userColor')) {
-      console.log('The item exists in local storage:', localStorage.getItem('userColor'));
       var root = document.querySelector(':root');
       root.style.setProperty('--hue-color', localStorage.getItem('userColor'));
       document.getElementById('hue-slider').value = localStorage.getItem('userColor');
     } else {
-      console.log('The item does not exist in local storage.');
+
     }
   } else {
-    console.log('Local storage is not supported by the browser.');
+    
   }
 };
-
-///*==================== ContactUs Post ====================*/
-//$(document).ready(function () {
-//    $("#submitBtn").click(function () {
-//        var form = $("#contactForm");
-//        $.ajax({
-//            type: "POST",
-//            url: form.attr("action"),
-//            data: form.serialize(),
-//            success: function (response) {
-//                if (response.success) {
-//                    Swal.fire({
-//                        icon: "success",
-//                        title: "پروژه شما با موفقیت ثبت شد.",
-//                        text: response.message
-//                    });
-//                } else {
-//                    Swal.fire({
-//                        icon: "error",
-//                        title: "مشکلی در ثبت پروژه بوجود آمده است.",
-//                        text: response.message
-//                    });
-//                }
-//            },
-//            error: function () {
-//                Swal.fire({
-//                    icon: "error",
-//                    title: "مشکلی در ثبت پروژه بوجود آمده است",
-//                    text: "هنگام بررسی درخواست شما یک خطا رخ داده است!"
-//                });
-//            }
-//        });
-//    });
-//});
-//$(document).ready(function () {
-//    $("#submitBtn").click(function (e) {
-//        e.preventDefault();
-
-//        var formData = $("#contactUsForm").serialize(); // Serialize the form data
-
-//        $.ajax({
-//            url: '@Url.Action("ContactUs", "Home")', // Replace with your controller and action
-//            type: 'POST',
-//            data: formData,
-//            success: function (result) {
-//                if (TempData["SuccessMessage"] != null) {
-//                    document.addEventListener("DOMContentLoaded", function () {
-//                        Swal.fire({
-//                            icon: 'success',
-//                            title: "پروژه شما با موفقیت ثبت شد.",
-//                            text: '@TempData["SuccessMessage"]',
-//                        });
-//                    });
-
-//                }
-//                else {
-
-//                    document.addEventListener("DOMContentLoaded", function () {
-//                        Swal.fire({
-//                            icon: 'error',
-//                            title: 'خطا!',
-//                            text: '@TempData["ErrorMessage"]',
-//                        });
-//                    });
-//                }
-//            },
-//            error: function (xhr, status, error) {
-//                document.addEventListener("DOMContentLoaded", function () {
-//                    Swal.fire({
-//                        icon: 'error',
-//                        title: 'خطا!',
-//                        text: 'مشکلی در روند ثبت پروژه بوجود آمده است.',
-//                    });
-//                });
-//            }
-//        });
-//    });
-//});

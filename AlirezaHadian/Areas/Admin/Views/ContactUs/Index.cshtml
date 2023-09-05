@@ -1,0 +1,40 @@
+﻿@model AlirezaHadian.Models.ContactUs
+
+@{
+    ViewData["Title"] = "تماس با من";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Place)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Place)
+            </td>
+            <td class="pull-left">
+                <a asp-action="Edit" asp-route-id="@Model.ContactUsID" class="btn btn-primary btn-md">
+                    <i class="uil uil-edit"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

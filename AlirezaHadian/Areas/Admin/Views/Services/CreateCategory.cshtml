@@ -1,0 +1,22 @@
+﻿@model AlirezaHadian.Models.ServicesCategory
+
+@{
+    ViewData["Title"] = "افزودن دسته بندی جدید";
+}
+
+<form asp-action="CreateCategory" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="ServicesCategoryTitle" class="control-label"></label>
+        <input asp-for="ServicesCategoryTitle" class="form-control" />
+        <span asp-validation-for="ServicesCategoryTitle" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ServicesCategoryIcon" class="control-label"></label>
+        <input asp-for="ServicesCategoryIcon" class="form-control" />
+        <span asp-validation-for="ServicesCategoryIcon" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="افزودن" class="btn btn-primary" />
+    </div>
+</form>

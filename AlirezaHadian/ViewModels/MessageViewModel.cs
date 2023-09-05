@@ -18,5 +18,6 @@ namespace AlirezaHadian.ViewModels
         [Display(Name = "متن پیام")]
         [Required(ErrorMessage = "{0} اجباری می باشد")]
         public string MessageText { get; set; }
+        public string GoogleCaptchaToken { get; set; }
     }
 }

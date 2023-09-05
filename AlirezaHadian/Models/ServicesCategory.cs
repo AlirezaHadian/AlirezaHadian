@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace AlirezaHadian.Models
 {
@@ -14,7 +15,7 @@ namespace AlirezaHadian.Models
         [Display(Name = "آیکون")]
         [Required(ErrorMessage = "{0} اجباری می باشد")]
         public string ServicesCategoryIcon { get; set; }
-
+        [ValidateNever]
         public List<Service> Services { get; set; } 
     }
 }

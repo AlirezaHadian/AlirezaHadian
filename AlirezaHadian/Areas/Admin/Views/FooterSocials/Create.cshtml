@@ -1,0 +1,22 @@
+﻿@model AlirezaHadian.Models.FooterSocial
+
+@{
+    ViewData["Title"] = "افزودن لینک جدید";
+}
+
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FooterIcon" class="control-label"></label>
+                <input asp-for="FooterIcon" class="form-control" />
+                <span asp-validation-for="FooterIcon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FooterLink" class="control-label"></label>
+                <input asp-for="FooterLink" class="form-control" />
+                <span asp-validation-for="FooterLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="افزودن" class="btn btn-primary" />
+            </div>
+        </form>

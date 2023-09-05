@@ -1,0 +1,64 @@
+﻿@model AlirezaHadian.Models.Message
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Message</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailOrPhone" class="control-label"></label>
+                <input asp-for="EmailOrPhone" class="form-control" />
+                <span asp-validation-for="EmailOrPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prject" class="control-label"></label>
+                <input asp-for="Prject" class="form-control" />
+                <span asp-validation-for="Prject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MessageText" class="control-label"></label>
+                <input asp-for="MessageText" class="form-control" />
+                <span asp-validation-for="MessageText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MessageTime" class="control-label"></label>
+                <input asp-for="MessageTime" class="form-control" />
+                <span asp-validation-for="MessageTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Seen" /> @Html.DisplayNameFor(model => model.Seen)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="Done" /> @Html.DisplayNameFor(model => model.Done)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

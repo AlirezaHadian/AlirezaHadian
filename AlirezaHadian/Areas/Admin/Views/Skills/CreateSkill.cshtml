@@ -1,0 +1,27 @@
+﻿@model AlirezaHadian.Models.Skill
+
+@{
+    ViewData["Title"] = "افزودن مهارت";
+}
+
+
+<form asp-action="CreateSkill" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Percentage" class="control-label"></label>
+                <input asp-for="Percentage" class="form-control" />
+                <span asp-validation-for="Percentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SkillCategoryID" class="control-label"></label>
+                <select asp-for="SkillCategoryID" class="form-control" asp-items="ViewBag.SkillsCategoryID"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="افزودن" class="btn btn-primary" />
+            </div>
+        </form>

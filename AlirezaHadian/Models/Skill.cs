@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 
@@ -21,6 +22,7 @@ namespace AlirezaHadian.Models
         [Required(ErrorMessage = "{0} اجباری می باشد")]
         public int SkillCategoryID { get; set; }
         [ForeignKey("SkillCategoryID")]
+        [ValidateNever]
         public SkillsCategory SkillsCategory { get; set; }
     }
 }

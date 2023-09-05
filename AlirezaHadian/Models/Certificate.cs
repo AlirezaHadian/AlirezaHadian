@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace AlirezaHadian.Models
 {
@@ -10,6 +11,7 @@ namespace AlirezaHadian.Models
         public string Title { get; set; }
         [Display(Name = "تصویر")]
         [Required(ErrorMessage = "{0} اجباری می باشد")]
+        [ValidateNever]
         public string Image { get; set; }
     }
 }

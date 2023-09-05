@@ -1,0 +1,30 @@
+﻿@model AlirezaHadian.Models.HomeSocial
+
+@{
+    ViewData["Title"] = "ویرایش شبکه اجتماعی";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        @*href="Admin/Home/HomeSocialUpdate"*@
+        <form asp-action="HomeSocialUpdate" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="HomeSocialID" />
+            <div class="row">
+                <div class="form-group col-md-6">
+                <label asp-for="SocialIcon" class="control-label"></label>
+                <input asp-for="SocialIcon" class="form-control" />
+                <span asp-validation-for="SocialIcon" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="SocialLink" class="control-label"></label>
+                <input asp-for="SocialLink" class="form-control" />
+                <span asp-validation-for="SocialLink" class="text-danger"></span>
+            </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ویرایش" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

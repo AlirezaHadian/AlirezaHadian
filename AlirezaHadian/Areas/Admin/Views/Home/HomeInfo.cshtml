@@ -1,0 +1,133 @@
+﻿@model AlirezaHadian.ViewModels.AdminHomeViewModel
+
+@{
+    ViewData["Title"] = "اطلاعات صفحه اصلی";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Home.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Home.Subtitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Home.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Home.Image)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(Model => Model.Home.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.Home.Subtitle)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.Home.Description)
+            </td>
+            <td>
+                <img src="/img/@Model.Home.Image" alt="@Model.Home.Title" style="max-width:120px;">
+            </td>
+            <td>
+                @*href="/Admin/Home/HomeInfoUpdate"*@
+                <a asp-action="HomeInfoUpdate" class="btn btn-primary btn-md"><i class="uil uil-edit"></i></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p>شبکه های اجتماعی</p>
+<hr />
+@*href="/Admin/Home/HomeSocialAdd"*@
+<a asp-action="HomeSocialAdd" class="btn btn-success">
+    افزودن شبکه اجتماعی
+    <i class="uil uil-plus-circle"></i>
+</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                آیکون
+            </th>
+            <th>
+                لینک
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.HomeSocials)
+        {
+            <tr>
+                <td>
+                    <h3>
+                        <i class="@item.SocialIcon"></i>
+                    </h3>
+                </td>
+                <td style="max-width:30%">
+                    @Html.DisplayFor(modelItem => item.SocialLink)
+                </td>
+                <td class="pull-left">
+                    @*href="/Admin/Home/HomeSocialUpdate/@item.HomeSocialID"*@
+                    <a asp-action="HomeSocialUpdate" asp-route-id="@item.HomeSocialID" class="btn btn-primary btn-md">
+                        <i class="uil uil-edit"></i>
+                    </a>
+                    <a href="#" data-id="@item.HomeSocialID" class="delete-link btn btn-danger btn-md">
+                        <i class="uil uil-trash-alt"></i>
+                    </a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@*/Admin/Home/DeleteHomeSocial/@item.HomeSocialID*@
+<script>
+    // Attach a click event to the delete links/buttons
+    const deleteLinks = document.querySelectorAll('.delete-link');
+    deleteLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault(); 
+
+            const itemId = this.getAttribute('data-id');
+            
+            Swal.fire({
+                title: 'آیا از حذف مطمئن هستید؟',
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'لغو',
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'بله'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = `/Admin/Home/DeleteHomeSocial/${itemId}`;
+                    swal.fire({
+                        icon: 'success',
+                        title: "شبکه اجتماعی مورد نظر با موفقیت حذف شد!",
+                        type: 'success',
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            });
+        });
+    });
+</script>
+@*
+            const confirmation = confirm("آیا از حذف این شبکه اجتماعی مطمئن هستی؟");
+
+            if (confirmation) {
+                // Redirect to the delete action
+                window.location.href = `/Admin/Home/DeleteHomeSocial/${itemId}`;
+                }
+*@            
