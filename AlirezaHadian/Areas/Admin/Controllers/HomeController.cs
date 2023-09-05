@@ -1,4 +1,5 @@
 ﻿using AlirezaHadian.Models;
+using AlirezaHadian.Utilities;
 using AlirezaHadian.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -21,11 +22,12 @@ namespace AlirezaHadian.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
+            var date = DateTime.Now.ToString("yyyy/MM/dd");
             AdminIndexViewModel index = new AdminIndexViewModel()
             {
                 botInfo = _db.TelegramBotInfoRepository.Get(),
                 userData = _db.UserDataRepository.Get(),
-                TodayVisit = _db.UserDataRepository.Get().Where(u => u.RequestTime == DateTime.Now.Date).DistinctBy(u => u.IPAddress).Count()
+                TodayVisit = _db.UserDataRepository.Get().Where(u => u.RequestTime.ToString("yyyy/MM/dd") == date).DistinctBy(u=> u.IPAddress).Count()
             };
             return View(index);
         }
